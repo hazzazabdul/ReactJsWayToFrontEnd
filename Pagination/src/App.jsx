@@ -1,22 +1,32 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import "./App.css";
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const allProducts = async () => {
-    const res = await fetch("https://dummyjson.com/products");
+    const res = await fetch(
+      `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
+    );
     const data = await res.json();
-    if (data.products) {
+    if (data && data.products) {
       setProducts(data.products);
+      setTotalPages(data.total / 10)
     }
   };
-  console.log(products);
+
+  const selectPageHandler = (pageNum) => {
+    if (pageNum >= 1 && pageNum <= totalPages && pageNum !== page) {
+      setPage(pageNum);
+    }
+  };
 
   useEffect(() => {
     allProducts();
-  }, []);
+  }, [page]);
 
   return (
     <div className="main__page">
@@ -29,6 +39,22 @@ const App = () => {
               <span className="product__title">{product.title}</span>
             </span>
           ))}
+        </div>
+      )}
+
+      {products.length > 0 && (
+        <div className="pagination">
+          <span onClick={() => selectPageHandler(page - 1)}>◀</span>
+          {[...Array(totalPages)].map((_, index) => (
+            <span
+              className={page === index + 1 ? "selectedPage" : ""}
+              onClick={() => selectPageHandler(index + 1)}
+              key={index}
+            >
+              {index + 1}
+            </span>
+          ))}
+          <span onClick={() => selectPageHandler(page + 1)}>▶</span>
         </div>
       )}
     </div>
