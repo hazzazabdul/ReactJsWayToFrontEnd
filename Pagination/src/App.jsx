@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import "./App.css";
+import Loading from "./Components/Loading";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ const App = () => {
     const data = await res.json();
     if (data && data.products) {
       setProducts(data.products);
-      setTotalPages(data.total / 10)
+      setTotalPages(data.total / 10);
     }
   };
 
@@ -31,7 +32,7 @@ const App = () => {
   return (
     <div className="main__page">
       <h1 className="main__title">Products</h1>
-      {products.length > 0 && (
+      {products.length > 0 ? (
         <div className="parent__products">
           {products.map((product) => (
             <span key={product.id} className="single__product">
@@ -40,6 +41,8 @@ const App = () => {
             </span>
           ))}
         </div>
+      ) : (
+        <Loading />
       )}
 
       {products.length > 0 && (
@@ -56,7 +59,8 @@ const App = () => {
           ))}
           <span onClick={() => selectPageHandler(page + 1)}>▶</span>
         </div>
-      )}
+      )
+      }
     </div>
   );
 };
