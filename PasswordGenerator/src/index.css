@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.container {
+  background-color: #24232b;
+  padding: 1.3rem;
+  width: 700px;
+  margin: 20px auto;
+  border-radius: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 700;
+}
+
+button {
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1.3rem;
+  background-color: #2a8b8b;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.copy__btn {
+  font-size: 1rem;
+}
+
+.char__length {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  gap: 1rem;
+  margin-block: 1rem;
+}
+
+.char__length > span {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.checkBoxes {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 30px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.checkBoxes div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.generate__password {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+  letter-spacing: 0.8px;
+}
+
+.title {
+  color: white;
+  font-size: 1rem;
+}
+
+.error__message {
+  color: red;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.password__strength {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  margin-block: 1rem;
+}
